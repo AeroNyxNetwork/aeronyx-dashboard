@@ -30,13 +30,31 @@ export default function Home() {
   // Fetch dashboard data
   const { data, isLoading, period, setPeriod } = useDashboardData('7d');
   
-  // Chart data state
-  const [transactionChartData, setTransactionChartData] = useState({
+  // Chart data state with proper typing
+  const [transactionChartData, setTransactionChartData] = useState<{
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      borderColor: string;
+      backgroundColor: string;
+      fill?: boolean;
+    }[];
+  }>({
     labels: [],
     datasets: []
   });
   
-  const [addressChartData, setAddressChartData] = useState({
+  const [addressChartData, setAddressChartData] = useState<{
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      borderColor: string;
+      backgroundColor: string;
+      fill?: boolean;
+    }[];
+  }>({
     labels: [],
     datasets: []
   });
