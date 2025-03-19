@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 16px;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(122, 20, 245, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(122, 20, 245, 0.1) 0%, transparent 25%);
+  min-height: 100vh;
+}
+
+.glass-card {
+  @apply bg-background-card rounded-[var(--radius)] backdrop-blur border border-border shadow-lg;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+.metric-change.positive {
+  @apply text-success;
+}
+
+.metric-change.negative {
+  @apply text-danger;
+}
+
+.metric-change.neutral {
+  @apply text-foreground-muted;
+}
+
+/* Skeleton loading animation */
+.skeleton {
+  @apply bg-gray-700/30 animate-pulse;
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+}
