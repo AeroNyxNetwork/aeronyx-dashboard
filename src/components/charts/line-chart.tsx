@@ -117,7 +117,10 @@ export function LineChart({ data, height = 300, isLoading = false }: LineChartPr
 
   return (
     <div style={{ height: `${height}px` }}>
-      <Line options={options} data={data} />
+      <Line 
+        options={options as any} 
+        data={data} 
+      />
     </div>
   );
 }
