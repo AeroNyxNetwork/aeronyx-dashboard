@@ -65,9 +65,8 @@ export function calculatePercentageChange(current: number, previous: number): nu
  * Format stake value
  */
 export function formatStake(stake: number): string {
-  // Convert from wei to token units (assuming 18 decimals)
-  const tokenValue = stake / 10**18;
-  return formatNumber(tokenValue);
+  // Display the full value
+  return formatNumber(stake);
 }
 
 /**
