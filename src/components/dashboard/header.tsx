@@ -31,7 +31,7 @@ export function Header({ currentPeriod, onPeriodChange, isLoading }: HeaderProps
         
         <div className="flex items-center text-xs text-foreground-muted">
           <span>on</span>
-          <img src="/soon-logo.svg" alt="SOON Blockchain" className="h-4 ml-2" />
+          <img src="https://binary.aeronyx.network/soon-logo.svg" alt="SOON Blockchain" className="h-4 ml-2" />
         </div>
       </div>
       
