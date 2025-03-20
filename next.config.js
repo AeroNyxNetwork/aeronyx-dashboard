@@ -8,7 +8,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://xsstc.xyz:8000/api/:path*',
+        destination: 'https://api.aeronyx.network/api/:path*',
       },
     ];
   },
