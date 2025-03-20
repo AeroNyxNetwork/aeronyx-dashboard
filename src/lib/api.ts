@@ -1,6 +1,6 @@
 import { ApiResponse, NodesResponse, Period } from '@/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://xsstc.xyz:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.aeronyx.network';
 
 /**
  * Fetch faucet statistics
