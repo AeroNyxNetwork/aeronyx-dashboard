@@ -9,6 +9,7 @@ import {
   UserCheck,
   LineChart as ChartIcon
 } from 'lucide-react';
+import { SecurityReminder } from '@/components/dashboard/security-reminder';
 
 import { PageContainer } from '@/components/layout/page-container';
 import { Header } from '@/components/dashboard/header';
@@ -240,6 +241,7 @@ export default function Home() {
       </div>
       
       <Footer />
+      <SecurityReminder />
     </PageContainer>
   );
 }
