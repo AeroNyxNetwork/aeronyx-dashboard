@@ -62,11 +62,30 @@ export function calculatePercentageChange(current: number, previous: number): nu
 }
 
 /**
- * Format stake value
+ * Format stake value 
+ * @param stake The stake value to format
+ * @param decimals Number of decimal places to show (default: 2)
+ * @returns Formatted stake value with appropriate suffix (K, M, B, T)
  */
-export function formatStake(stake: number): string {
-  // Display the full value
-  return formatNumber(stake);
+export function formatStake(stake: number, decimals: number = 2): string {
+  if (stake === 0) return '0';
+  
+  // For small numbers, just return the formatted number
+  if (stake < 1000) {
+    return stake.toFixed(decimals);
+  }
+  
+  const units = ['', 'K', 'M', 'B', 'T'];
+  const unitIndex = Math.floor(Math.log10(stake) / 3);
+  
+  // Don't go beyond available units
+  const limitedUnitIndex = Math.min(unitIndex, units.length - 1);
+  
+  // Calculate the scaled value
+  const scaledValue = stake / Math.pow(10, limitedUnitIndex * 3);
+  
+  // Format the value with the specified number of decimal places
+  return scaledValue.toFixed(decimals) + units[limitedUnitIndex];
 }
 
 /**
@@ -100,6 +119,6 @@ export function getPeriodName(period: Period): string {
     '7d': 'Week',
     '30d': 'Month',
   };
-  
+   
   return periodNames[period];
 }
