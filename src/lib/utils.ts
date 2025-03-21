@@ -65,27 +65,31 @@ export function calculatePercentageChange(current: number, previous: number): nu
  * Format stake value 
  * @param stake The stake value to format
  * @param decimals Number of decimal places to show (default: 2)
- * @returns Formatted stake value with appropriate suffix (K, M, B, T)
+ * @returns Formatted stake value with 'm' notation for extremely large values
  */
 export function formatStake(stake: number, decimals: number = 2): string {
   if (stake === 0) return '0';
   
-  // For small numbers, just return the formatted number
-  if (stake < 1000) {
-    return stake.toFixed(decimals);
+  // Use scientific notation ('e' format) for extremely large numbers
+  if (stake >= 1e15) {  // Values larger than quadrillion
+    // Format as '1.23e16' style
+    return stake.toExponential(decimals).replace('+', '');
   }
   
   const units = ['', 'K', 'M', 'B', 'T'];
-  const unitIndex = Math.floor(Math.log10(stake) / 3);
+  const unitIndex = Math.floor(Math.log10(Math.abs(stake)) / 3);
   
   // Don't go beyond available units
-  const limitedUnitIndex = Math.min(unitIndex, units.length - 1);
+  if (unitIndex >= units.length) {
+    // For values that exceed our units but aren't quite large enough for scientific notation
+    return stake.toExponential(decimals).replace('+', '');
+  }
   
   // Calculate the scaled value
-  const scaledValue = stake / Math.pow(10, limitedUnitIndex * 3);
+  const scaledValue = stake / Math.pow(10, unitIndex * 3);
   
   // Format the value with the specified number of decimal places
-  return scaledValue.toFixed(decimals) + units[limitedUnitIndex];
+  return scaledValue.toFixed(decimals) + units[unitIndex];
 }
 
 /**
